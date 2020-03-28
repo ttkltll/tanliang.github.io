@@ -3,6 +3,8 @@
   <entry>
     <title>关于学习</title>
     <url>/2020/03/28/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>这是我试着发的一</p>
+<p>git config –global alias.fuck ‘!cd /Users/tanliang/Hexoblog;hexo clean;hexo g -d’</p>
+]]></content>
   </entry>
 </search>
