@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>flask源码阅读之local</title>
-    <url>/2020/04/04/title/</url>
+    <url>/2020/04/04/flask%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8Blocal/</url>
     <content><![CDATA[<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Type</span><span class="params">()</span>:</span></span><br><span class="line">  <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
