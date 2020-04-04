@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>flask源码阅读之local</title>
+    <url>/2020/04/04/title/</url>
+    <content><![CDATA[<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Type</span><span class="params">()</span>:</span></span><br><span class="line">  <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>flask</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于学习</title>
     <url>/2020/03/28/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<p>这是我试着发的一</p>
