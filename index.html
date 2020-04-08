@@ -305,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/flask%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8Blocal/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/flask%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tanliang">
@@ -324,7 +324,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/04/flask%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8Blocal/" itemprop="url">flask源码阅读之local</a></h1>
+                <a class="post-title-link" href="/2020/04/04/flask%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/" itemprop="url">flask源码阅读之请求流程</a></h1>
         
 
         <div class="post-meta">
@@ -355,9 +355,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/04/flask%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8Blocal/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/04/flask%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/04/flask源码阅读之local/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/04/flask源码阅读之请求流程/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -387,13 +387,14 @@
       
         
           
-          12class Type():  pass
-
-
           
+我们先大致的走下flask处理请求的流程，我用的是flask0.1这个版本的源码。之所以用这个，是为了去除不必要枝叶，快速把握flask的主干。后面再迭代，加细节。
+
+1234567891011121314151617from flask import Flask, Request, reques
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/04/flask%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8Blocal/#more" rel="contents">
+            <a class="btn" href="/2020/04/04/flask%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

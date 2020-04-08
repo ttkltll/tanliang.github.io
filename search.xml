@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>flask源码阅读之local</title>
-    <url>/2020/04/04/flask%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8Blocal/</url>
-    <content><![CDATA[<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Type</span><span class="params">()</span>:</span></span><br><span class="line">  <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+    <title>flask源码阅读之请求流程</title>
+    <url>/2020/04/04/flask%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<blockquote>
+<p>我们先大致的走下flask处理请求的流程，我用的是flask0.1这个版本的源码。之所以用这个，是为了去除不必要枝叶，快速把握flask的主干。后面再迭代，加细节。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, Request, request, session, flash, abort, _request_ctx_stack</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> user <span class="keyword">import</span> web</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line">web.register(app)</span><br><span class="line"></span><br><span class="line"><span class="comment">#下面会注册路由：</span></span><br><span class="line"><span class="meta">@app.route('/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></span><br><span class="line">    req = request.url</span><br><span class="line">    <span class="keyword">return</span> req</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> app.url_map</span><br><span class="line"><span class="keyword">print</span> app.view_functions</span><br><span class="line">app.run(debug=<span class="literal">True</span>, port=<span class="number">8004</span>)</span><br></pre></td></tr></table></figure>
 
+<p>当我们运行这个入口文件，先实例化一个app对象，后面执行视图函数的路由注册。这个时候，app的url_map,view_function已经有值了。然后运行app.run()。我们进入run()方法内部：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self, host=<span class="string">'localhost'</span>, port=<span class="number">5000</span>, **options)</span>:</span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">from</span> werkzeug <span class="keyword">import</span> run_simple</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'debug'</span> <span class="keyword">in</span> options:</span><br><span class="line">        self.debug = options.pop(<span class="string">'debug'</span>)</span><br><span class="line">    options.setdefault(<span class="string">'use_reloader'</span>, self.debug)</span><br><span class="line">    options.setdefault(<span class="string">'use_debugger'</span>, self.debug)</span><br><span class="line">    <span class="keyword">return</span> run_simple(host, port, self, **options)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个run()方法，会返回run_simple(),这个方法是werkzeug模块里的，会启动一个服务器，run()方法把这个app的实例作为参数传给了run_simple。</p>
+<p>服务器会监听浏览器传过来的信息，接着服务器把信息environ,start_response传给WSGI application,也就是实例化的app。environ包括所有的请求信息，start_response是 application 处理完之后需要调用的函数，参数是状态码、响应头部还有错误信息。</p>
+<p>服务器端会调用<strong>call</strong>方法，<strong>call</strong>方法返回app自己的wsgi_app()方法：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, environ, start_response)</span>:</span></span><br><span class="line">    <span class="string">"""Shortcut for :attr:`wsgi_app`"""</span></span><br><span class="line">    <span class="keyword">return</span> self.wsgi_app(environ, start_response)</span><br></pre></td></tr></table></figure>
+
+<p>我们进入wigi_app内部看下，这里就是WSGI application处理请求的主干了！</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wsgi_app</span><span class="params">(self, environ, start_response)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> self.request_context(environ):</span><br><span class="line">        rv = self.preprocess_request()</span><br><span class="line">        <span class="keyword">if</span> rv <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            rv = self.dispatch_request()</span><br><span class="line">        response = self.make_response(rv)</span><br><span class="line">        response = self.process_response(response)</span><br><span class="line">        <span class="keyword">return</span> response(environ, start_response)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这些代码做了什么事呢？</p>
+<p>先用environ封装一个请求上下文对象，并且把这个上下文压入到栈中。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> self.request_context(environ):</span><br></pre></td></tr></table></figure>
+
+
+
+<p>为什么这个语句可以做到这件事呢？是因为request_context（）方法会返回一个_RequestContext对象，而这个对象实现了<strong>enter</strong>方法。这里不展开。然后是做调用preprocess_request()函数做一些预处理。现在还没有进入视图函数。然后才是调用dispatch_request()函数，这个函数做什么呢？主要是分发路由，找到匹配的视图函数来处理请求。把结果返回给rv变量。再接着调用make_response()函数对rv封装，把它转换成一个符合格式的Response对象。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">response = self.process_response(response)</span><br></pre></td></tr></table></figure>
+
+<p>这句会对response做进一步处理。主要是调用after_request_funcs列表里的函数。这个列表，由一些函数组成。这些函数可以通过after_request（）注册。最后返回return response(environ, start_response)。respsose可以被调用，是因为response是一个实现了<strong>call</strong>方法的类，到此，整个流程已经走完了。</p>
+<blockquote>
+<p>先把流程走通了，以后再阅读下蓝图模块，错误处理模块，请求上下文模块的源码</p>
+</blockquote>
 ]]></content>
       <tags>
         <tag>flask</tag>
