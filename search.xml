@@ -41,17 +41,4 @@
         <tag>flask</tag>
       </tags>
   </entry>
-  <entry>
-    <title>关于学习</title>
-    <url>/2020/03/28/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>这是我试着发的一</p>
-<p>git config –global alias.fuck ‘!cd /Users/tanliang/Hexoblog;hexo clean;hexo g -d’</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>中西文化差异</title>
-    <url>/2018/03/29/%E4%B8%AD%E8%A5%BF%E6%96%87%E5%8C%96%E5%B7%AE%E5%BC%82/</url>
-    <content><![CDATA[<p>试一下</p>
-]]></content>
-  </entry>
 </search>
