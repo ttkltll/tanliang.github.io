@@ -6,9 +6,9 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>阅读flask源码：Local,LocalStack</title>
-    <url>/2020/04/09/%E9%98%85%E8%AF%BBflask%E6%BA%90%E7%A0%81%EF%BC%9ALocal-LocalStack/</url>
-    <content><![CDATA[<p>我们还是以flask0.1的代码来阅读。先提出几个常见的问题：</p>
+    <title>阅读flask源码2：Local,LocalStack</title>
+    <url>/2020/04/09/%E9%98%85%E8%AF%BBflask%E6%BA%90%E7%A0%812%EF%BC%9ALocal-LocalStack/</url>
+    <content><![CDATA[<p>我们还是以flask0.1的代码来阅读,先提出几个常见的问题：</p>
 <p>1上下文是怎么被压入栈的？</p>
 <p>2为什么在不同的程序中通过相同的变量request可以拿到对应的请求</p>
 <p>我们先看第一个问题：上下文是怎么被压入栈的？</p>
@@ -37,8 +37,8 @@
       </tags>
   </entry>
   <entry>
-    <title>flask源码阅读之请求流程</title>
-    <url>/2020/04/04/flask%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/</url>
+    <title>阅读flask源码1：flask请求流程</title>
+    <url>/2020/04/04/%E9%98%85%E8%AF%BBflask%E6%BA%90%E7%A0%811%EF%BC%9Aflask%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/</url>
     <content><![CDATA[<blockquote>
 <p>我们先大致的走下flask处理请求的流程，我用的是flask0.1这个版本的源码。之所以用这个，是为了去除不必要枝叶，快速把握flask的主干。后面再迭代，加细节。</p>
 </blockquote>
