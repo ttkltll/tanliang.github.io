@@ -32,6 +32,9 @@
 <p> _request_ctx_stack.top.request)会从栈中取出最上面的对象，并且拿到栈最上面的上下文对象。</p>
 <p>它本身没有url属性，所以会触发LocalProxy的<strong>getattr</strong>属性。这个时候，拿到request对象的url属性。</p>
 ]]></content>
+      <categories>
+        <category>阅读flask源码</category>
+      </categories>
       <tags>
         <tag>flask</tag>
       </tags>
@@ -73,6 +76,9 @@
 <p>先把流程走通了，以后再阅读下蓝图模块，错误处理模块，请求上下文模块的源码</p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>阅读flask源码</category>
+      </categories>
       <tags>
         <tag>flask</tag>
       </tags>
