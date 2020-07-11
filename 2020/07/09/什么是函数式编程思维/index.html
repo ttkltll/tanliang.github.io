@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="扩展：依赖注入，ioc,反射，控制反转。 什么是函数式思维？ 为什么要用函数式思维？ 怎么用函数式思维？ 函数式思维，在我看来，就是一切以函数为根本，在面象对象思维中，你会定义一个类，你实例化一个类，就有一个对象，这个对象有自己专有的方法和属性。而在函数式思维中，你可以通过函数来达到这样的目的。 软件设计，追求的是抽象，组合。而面象对象思维不过是其实一种，还可以通过数据驱动设计，MVC，等其它手段">
+<meta name="description" content="目前sicp看到第三章节，前两章完成了90%的习题，第三章看了一半。这篇文章主要是些杂谈，可能会有些抽象。后面的系列文章会更具体的讲解。SICP这个写作项目，大概会持续至少半年。 先讲讲函数式思维和面向对象，软件设计的一些关系这本书其实是讲，当一个系统越来越复杂时，怎样管理系统的复杂度。有三个方法，抽象，组合，DSL(领域特定语言)。抽象和组合可以更好地封装代码。让下层的实现细节不会影响到上层的使">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SICP(1):函数式编程思维杂谈">
 <meta property="og:url" content="http://yoursite.com/2020/07/09/%E4%BB%80%E4%B9%88%E6%98%AF%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E6%80%9D%E7%BB%B4/index.html">
 <meta property="og:site_name" content="tanliang&#39;s">
-<meta property="og:description" content="扩展：依赖注入，ioc,反射，控制反转。 什么是函数式思维？ 为什么要用函数式思维？ 怎么用函数式思维？ 函数式思维，在我看来，就是一切以函数为根本，在面象对象思维中，你会定义一个类，你实例化一个类，就有一个对象，这个对象有自己专有的方法和属性。而在函数式思维中，你可以通过函数来达到这样的目的。 软件设计，追求的是抽象，组合。而面象对象思维不过是其实一种，还可以通过数据驱动设计，MVC，等其它手段">
+<meta property="og:description" content="目前sicp看到第三章节，前两章完成了90%的习题，第三章看了一半。这篇文章主要是些杂谈，可能会有些抽象。后面的系列文章会更具体的讲解。SICP这个写作项目，大概会持续至少半年。 先讲讲函数式思维和面向对象，软件设计的一些关系这本书其实是讲，当一个系统越来越复杂时，怎样管理系统的复杂度。有三个方法，抽象，组合，DSL(领域特定语言)。抽象和组合可以更好地封装代码。让下层的实现细节不会影响到上层的使">
 <meta property="article:published_time" content="2020-07-09T10:59:18.000Z">
-<meta property="article:modified_time" content="2020-07-10T07:45:37.621Z">
+<meta property="article:modified_time" content="2020-07-11T03:09:39.954Z">
 <meta property="article:author" content="tanliang">
 <meta property="article:tag" content="编程，投资，历史，马拉松，长跑">
 <meta name="twitter:card" content="summary">
@@ -393,26 +393,29 @@
       
 
       
-        <h3 id="扩展："><a href="#扩展：" class="headerlink" title="扩展："></a>扩展：</h3><p>依赖注入，ioc,反射，控制反转。</p>
-<p>什么是函数式思维？</p>
-<p>为什么要用函数式思维？</p>
-<p>怎么用函数式思维？</p>
-<p>函数式思维，在我看来，就是一切以函数为根本，在面象对象思维中，你会定义一个类，你实例化一个类，就有一个对象，这个对象有自己专有的方法和属性。而在函数式思维中，你可以通过函数来达到这样的目的。</p>
-<p>软件设计，追求的是抽象，组合。而面象对象思维不过是其实一种，还可以通过数据驱动设计，MVC，等其它手段。面象对象思维和面向对象编程语言是两回事。什么意思呢？你用Lisp系语言也可以达到面向对象思维，用C语言也可以。当然你用java这种“纯正”的面向对象语言，你可以显式的定义类，对象。而且你不用管那么多细节，比如垃圾回收，这个虚拟机会帮你做。但你用C语言可不行，你要自己做。所有这里各有优势。你用lisp,你可以更小“颗粒”的实现面向对象，但很多细节你得做。而java,正好相反。</p>
-<p>函数式思维编程，这里的函数，不是编程语言中的函数，而是数学中的，数学中的函数强调一对一映射。什么意思呢？就是给定相同的参数x,就一定会得到相同的结果，在严格的函数式思维中，变量是代数中的变量，一个值的名称，它是不可能改变的。而在命令式语言中，变量是存储状态的单元，可以改变，可以被赋值的，比如x = x+1,但是这个表达式在数学看来就是不可取了。</p>
-<p>函数式思维中，也是没有循环的，在普通的java循环中，是要有一个变量做累积的，比如i++,即i = i +1。纯函数编程语言无法实现循环，这是因为For循环使用可变的状态作为计数器，而While循环或DoWhile循环需要可变的状态作为跳出循环的条件。因此在函数式语言里就只能使用递归来解决迭代问题，这使得函数式编程严重依赖递归</p>
-<p>函数式思维和命令式语言最本质的区别在于，命令式语言，它是按照这件事“怎么做”一步一步去执行的，而函数式语言不同，它是描述“是什么”，它不管你完成一件事的具体步骤，相当于数学中的表达式求值。所以这会更抽象。</p>
-<p>严格意义上的函数式编程意味着不使用可变的变量，赋值，循环和其他命令式控制结构进行编程。</p>
+        <h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>目前sicp看到第三章节，前两章完成了90%的习题，第三章看了一半。这篇文章主要是些杂谈，可能会有些抽象。后面的系列文章会更具体的讲解。SICP这个写作项目，大概会持续至少半年。</p>
+<h5 id="先讲讲函数式思维和面向对象，软件设计的一些关系"><a href="#先讲讲函数式思维和面向对象，软件设计的一些关系" class="headerlink" title="先讲讲函数式思维和面向对象，软件设计的一些关系"></a>先讲讲函数式思维和面向对象，软件设计的一些关系</h5><p>这本书其实是讲，当一个系统越来越复杂时，怎样管理系统的复杂度。有三个方法，抽象，组合，DSL(领域特定语言)。抽象和组合可以更好地封装代码。让下层的实现细节不会影响到上层的使用。面象对象思维不过是其实一种，还可以通过数据驱动设计，消息传递等其它手段。另外，<strong>面象对象思维和面向对象编程语言是两回事</strong>。什么意思呢？你用Lisp系语言也可以达到面向对象思维，用C语言也可以。比如linux内核用C写的就很面向对象（我没看过，在哪本书上看到的）。当然你用java这种“纯正”的面向对象语言，你可以显式的定义类，对象。而且你不用管那么多细节，比如垃圾回收，这个虚拟机会帮你做。但你用C语言可不行，你要自己做。各有优势。</p>
+<p>所谓函数式思维编程，这里的函数，不是编程语言中的函数，而是数学中的，<strong>数学中的函数强调一对一映射</strong>。什么意思呢？就是给定相同的参数x,就一定会得到相同的结果，在严格的函数式思维中，变量是代数中的变量，一个值的名称，它是不可能改变的。而在命令式语言中，变量是存储状态的单元，可以改变，可以被赋值的，比如x = x+1,但是这个表达式在数学看来就是不可取了。</p>
+<p>函数式思维中，也是没有循环的，在普通的java循环中，是要有一个变量做累积的，比如i++,即i = i +1。纯函数编程语言无法实现循环，这是因为For循环使用可变的状态作为计数器，而While循环需要可变的状态作为跳出循环的条件。因此在函数式语言里就只能使用递归来解决迭代问题，这使得函数式编程严重依赖递归。严格意义上的函数式编程意味着不使用可变的变量，赋值，循环和其他命令式控制结构进行编程。</p>
+<p>那么到底是命令式编程语言好，还是函数式好呢？调用《道德经》的思维:<strong>没有对错，只有合适不合适</strong>。两种语言都有它们的最适用场景。面向对象的本质是什么？OOP之父Alan Kay说：“OOP is all about messaging”,利用OOP建模，就是在各个对象中传递消息。而现实的大多业务场景，都可以建模成人或者其它对象的协作，通过消息来协作。比如你下个订单，这个对象的库存数减少，新建一个订单对象，等等。这种场景，用OOP是很自然的建模过程。当然你用函数式编程的各种函数“动作”来建模这个过程也是可以的。但是这个场景，用OOP和FP,哪个更好理解呢。举另外一个场景，你就是对一组数据做加工，先排序，再查询，然后再转换。这个场景，显然用FP来建模更自然，这一看就可以看成是一个“管道”过程。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = (f1(f2(f3...(fn data))))..</span><br></pre></td></tr></table></figure>
+
+<p>但如果这个场景用OOP语言呢？每个过程建立一个class?这很别扭。不简洁。</p>
+<p>另外，因为函数式编程的不可赋值特性，让它在并发处理上有优势，SICP上有讲，我还没理解透这块。</p>
+<h5 id="总结下就是：一个业务，它抽象成OOP更自然，用OOP-抽象成函数过程的组合，用FP。"><a href="#总结下就是：一个业务，它抽象成OOP更自然，用OOP-抽象成函数过程的组合，用FP。" class="headerlink" title="总结下就是：一个业务，它抽象成OOP更自然，用OOP,抽象成函数过程的组合，用FP。"></a>总结下就是：一个业务，它抽象成OOP更自然，用OOP,抽象成函数过程的组合，用FP。</h5><p><strong>那么，函数式思维和命令式语言最本质的区别是什么？</strong>命令式语言，它是按照这件事“怎么做”一步一步去执行的，而函数式语言不同，它是描述“是什么”，它不管你完成一件事的具体步骤，相当于数学中的表达式求值。所以这会更抽象。</p>
 <p>比如我们要对一个列表操作，让它每个数都开平方。怎么做呢？用python:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">list2 = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> list1:</span><br><span class="line">  a = i * i</span><br><span class="line">  list2.append(a)</span><br><span class="line"><span class="comment"># 这种思维是把列表里的数先转换，再加到表里去。一个一个的进行。</span></span><br></pre></td></tr></table></figure>
 
 
 
-<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">;通过描述一个 旧列表-&gt;新列表 的映射，而不是描述「从旧列表得到新树应该怎样做」来达到目的，递归这种方式于循环相比被认为是更符合人的思维的，即告诉机器做什么，而不是告诉机器怎么做。</span></span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">square</span> x) (<span class="name"><span class="builtin-name">*</span></span> x x))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> list1 (<span class="name"><span class="builtin-name">list</span></span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span>))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">square-list</span> l)</span><br><span class="line">  (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">null?</span></span> l)</span><br><span class="line">      '()</span><br><span class="line">      (<span class="name"><span class="builtin-name">cons</span></span> (<span class="name">square</span> (<span class="name"><span class="builtin-name">car</span></span> l)) (<span class="name">square-list</span> (<span class="name"><span class="builtin-name">cdr</span></span> l)))))</span><br><span class="line"></span><br><span class="line"><span class="comment">;输出结果：</span></span><br><span class="line">&gt; (square-list list1)</span><br><span class="line">(<span class="name">1</span> <span class="number">4</span> <span class="number">9</span> <span class="number">16</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">;通过描述一个 旧列表-&gt;新列表 的映射，而不是描述「从旧列表得到新树应该怎样做」来达到目的，递归这种方式于循环相比被认为是更符合人的思维的，即告诉机器做什么，而不是告诉机器怎么做。</span></span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">square</span> x) (<span class="name"><span class="builtin-name">*</span></span> x x))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> list1 (<span class="name"><span class="builtin-name">list</span></span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">;输出结果：</span></span><br><span class="line">&gt; (map square list1)</span><br><span class="line">(<span class="name">1</span> <span class="number">4</span> <span class="number">9</span> <span class="number">16</span>)</span><br></pre></td></tr></table></figure>
 
-<p>面向对象思维，最本质的不是封装，继承，多态。而是消息传递。因为函数式语言也可以实现封装，比如用lambda表达式。一个对象的行为，影响了另一个行为的内部状态。</p>
-<p>Changelog:</p>
-<p>20200710 15：40 完成草稿</p>
+
+
+<p>先说到这，下一篇文章写什么呢？写高阶函数或者数据导向的程序设计和可加性。</p>
+<p>###Changelog:</p>
+<p>20200710 15：40: 完成草稿</p>
+<p>20200711 11：09：完成文章</p>
 
       
     </div>
@@ -615,7 +618,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展："><span class="nav-number">1.</span> <span class="nav-text">扩展：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#先讲讲函数式思维和面向对象，软件设计的一些关系"><span class="nav-number">1.0.1.</span> <span class="nav-text">先讲讲函数式思维和面向对象，软件设计的一些关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结下就是：一个业务，它抽象成OOP更自然，用OOP-抽象成函数过程的组合，用FP。"><span class="nav-number">1.0.2.</span> <span class="nav-text">总结下就是：一个业务，它抽象成OOP更自然，用OOP,抽象成函数过程的组合，用FP。</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
