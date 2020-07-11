@@ -12,12 +12,11 @@
 
 <p>但如果这个场景用OOP语言呢？每个过程建立一个class?这很别扭。不简洁。</p>
 <p>另外，因为函数式编程的不可赋值特性，让它在并发处理上有优势，SICP上有讲，我还没理解透这块。</p>
-<h5 id="总结下就是：一个业务，它抽象成OOP更自然，用OOP-抽象成函数过程的组合，用FP。"><a href="#总结下就是：一个业务，它抽象成OOP更自然，用OOP-抽象成函数过程的组合，用FP。" class="headerlink" title="总结下就是：一个业务，它抽象成OOP更自然，用OOP,抽象成函数过程的组合，用FP。"></a>总结下就是：一个业务，它抽象成OOP更自然，用OOP,抽象成函数过程的组合，用FP。</h5><p><strong>那么，函数式思维和命令式语言最本质的区别是什么？</strong>命令式语言，它是按照这件事“怎么做”一步一步去执行的，而函数式语言不同，它是描述“是什么”，它不管你完成一件事的具体步骤，相当于数学中的表达式求值。所以这会更抽象。</p>
+<h5 id="总结下就是：一个业务，它抽象成OOP更自然，用OOP-抽象成函数过程更好理解，用FP。"><a href="#总结下就是：一个业务，它抽象成OOP更自然，用OOP-抽象成函数过程更好理解，用FP。" class="headerlink" title="总结下就是：一个业务，它抽象成OOP更自然，用OOP,抽象成函数过程更好理解，用FP。"></a>总结下就是：一个业务，它抽象成OOP更自然，用OOP,抽象成函数过程更好理解，用FP。</h5><p><strong>那么，函数式思维和命令式语言最本质的区别是什么？</strong>命令式语言，它是按照这件事“怎么做”一步一步去执行的，而函数式语言不同，它是描述“是什么”，它不管你完成一件事的具体步骤，相当于数学中的表达式求值。所以这会更抽象。</p>
 <p>比如我们要对一个列表操作，让它每个数都开平方。怎么做呢？用python:</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">list2 = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> list1:</span><br><span class="line">  a = i * i</span><br><span class="line">  list2.append(a)</span><br><span class="line"><span class="comment"># 这种思维是把列表里的数先转换，再加到表里去。一个一个的进行。</span></span><br></pre></td></tr></table></figure>
 
-
-
+<p>用scheme:</p>
 <figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line"><span class="comment">;通过描述一个 旧列表-&gt;新列表 的映射，而不是描述「从旧列表得到新树应该怎样做」来达到目的，递归这种方式于循环相比被认为是更符合人的思维的，即告诉机器做什么，而不是告诉机器怎么做。</span></span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">square</span> x) (<span class="name"><span class="builtin-name">*</span></span> x x))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> list1 (<span class="name"><span class="builtin-name">list</span></span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">;输出结果：</span></span><br><span class="line">&gt; (map square list1)</span><br><span class="line">(<span class="name">1</span> <span class="number">4</span> <span class="number">9</span> <span class="number">16</span>)</span><br></pre></td></tr></table></figure>
 
 
