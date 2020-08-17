@@ -135,6 +135,9 @@
     <title>阅读flask源码:错误处理</title>
     <url>/2020/04/09/%E9%98%85%E8%AF%BBflask%E6%BA%90%E7%A0%81-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[]]></content>
+      <categories>
+        <category>read</category>
+      </categories>
   </entry>
   <entry>
     <title>阅读flask源码2：Local,LocalStack</title>
